@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cash Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: calc(100% - 20px);
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Cash Payment</h2>
+        <label for="billAmount">Bill Amount (₹):</label>
+        <div id="billAmountDisplay" style="margin-bottom: 20px; font-size: 18px; font-weight: bold;">Loading...</div>
+
+        <form id="cashForm" onsubmit="return handlePayment(event)">
+            <label for="cashGiven">Cash Given (₹):</label>
+            <input type="number" id="cashGiven" placeholder="Enter cash given" required>
+            <button type="submit">Complete Payment</button>
+        </form>
+        <div class="result" id="result"></div>
+        <button id="downloadReceipt" style="display: none;" onclick="generateReceipt()">Download Receipt</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const { jsPDF } = window.jspdf;
+
+            // Fetch bill amount and items from localStorage
+            const billAmount = parseFloat(localStorage.getItem("billAmount"));
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            if (!billAmount || cart.length === 0) {
+                alert("No bill details found. Redirecting to the receipt page.");
+                window.location.href = "bill.html";
+            }
+
+            // Display bill amount on the page
+            document.getElementById("billAmountDisplay").innerText = `₹${billAmount.toFixed(2)}`;
+
+            async function handlePayment(event) {
+                event.preventDefault();
+                const cashGiven = parseFloat(document.getElementById("cashGiven").value);
+
+                if (cashGiven < billAmount) {
+                    document.getElementById("result").innerText = "Insufficient cash provided!";
+                    document.getElementById("result").style.color = "red";
+                } else {
+                    const change = cashGiven - billAmount;
+                    document.getElementById("result").innerText = `Change to be returned: ₹${change.toFixed(2)}`;
+                    document.getElementById("result").style.color = "green";
+
+                    // Save payment details to the database
+                    const paymentDetails = {
+                        cart: cart,
+                        billAmount: billAmount,
+                        cashGiven: cashGiven,
+                        change: change,
+                    };
+
+                    try {
+                        const response = await fetch("save_payment.php", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(paymentDetails),
+                        });
+
+                        const result = await response.json();
+                        if (result.success) {
+                            document.getElementById("downloadReceipt").style.display = "block";
+                            alert("Payment successful! Redirecting to home page.");
+                            setTimeout(() => (window.location.href = "index.html"), 2000); // Redirect after 2 seconds
+                        } else {
+                            alert("Failed to save payment details. Please try again.");
+                        }
+                    } catch (error) {
+                        console.error("Error saving payment:", error);
+                        alert("An error occurred while saving payment details.");
+                    }
+                }
+            }
+
+            function generateReceipt() {
+                const doc = new jsPDF();
+
+                doc.setFontSize(18);
+                doc.text("Burger House", 10, 10);
+                doc.setFontSize(12);
+                doc.text("Thank you for dining with us!", 10, 20);
+
+                doc.line(10, 25, 200, 25);
+
+                let yPos = 35;
+                doc.text("Item", 10, yPos);
+                doc.text("Qty", 60, yPos);
+                doc.text("Price", 90, yPos);
+                doc.text("Total", 120, yPos);
+
+                doc.line(10, yPos + 5, 200, yPos + 5);
+
+                yPos += 15;
+                cart.forEach((item) => {
+                    doc.text(item.name, 10, yPos);
+                    doc.text(item.quantity.toString(), 60, yPos);
+                    doc.text(`₹${item.price.toFixed(2)}`, 90, yPos);
+                    doc.text(`₹${item.total.toFixed(2)}`, 120, yPos);
+                    yPos += 10;
+                });
+
+                doc.text(`Total: ₹${billAmount.toFixed(2)}`, 10, yPos + 20);
+
+                doc.save("Receipt.pdf");
+            }
+
+            window.handlePayment = handlePayment;
+            window.generateReceipt = generateReceipt;
+        });
+    </script>
+</body>
+
+</html>

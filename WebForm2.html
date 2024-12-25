@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+        body {
+            background-image: url('exploding-burger-with-vegetables-melted-cheese-black-background-generative-ai.jpg');
+            background-size: cover;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .login1 {
+            position: absolute;
+            top: 10%;
+            left: 33%;
+            background: transparent;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgb(255, 255, 255);
+            height: 520px;
+            width: 450px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .user1,
+        .pass1 {
+            width: 100%;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .user,
+        .pass {
+            width: calc(100% - 30px);
+            height: 40px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: transparent;
+            border: 2px solid rgb(235, 229, 229);
+            border-radius: 35px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .img1,
+        .img2 {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            height: 25px;
+            width: 25px;
+        }
+
+        .b1 {
+            border: none;
+            font-size: 20px;
+            height: 50px;
+            width: 200px;
+            background-color: #ffffff;
+            color: #0a0000;
+            cursor: pointer;
+            border-radius: 40px;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .b1:hover {
+            background-color: #000000c5;
+            color: #ffffff;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #0020d8;
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .checkbox-container input {
+            margin-right: 10px;
+        }
+
+        .checkbox-label {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login1">
+        <h1><b>Login</b></h1>
+        <form action="submit_login.php" method="POST">
+            <!-- Mobile Number Field -->
+            <div class="user1">
+                <input type="text" name="mobile" id="txtMobileNo" class="user" placeholder="Mobile NO." required />
+                <img class="img1" src="login-user-name-1-512.png" alt="User Logo" />
+            </div>
+
+            <!-- Password Field -->
+            <div class="pass1">
+                <input type="password" name="password" id="txtPassword" class="pass" placeholder="Password" required />
+                <img class="img2" src="pngegg (1).png" alt="Password Logo" />
+            </div>
+
+            <!-- Checkbox -->
+            <div class="checkbox-container">
+                <input type="checkbox" id="chkAgree" name="agree" required />
+                <label for="chkAgree" class="checkbox-label">I agree to all conditions</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="b1">Submit</button>
+        </form>
+
+        <!-- Navigation Link -->
+        <nav>
+            <a href="registration.html">Don't have an account? Register</a>
+        </nav>
+    </div>
+</body>
+
+</html>

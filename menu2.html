@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Menu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        .logo {
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #e6aa1f;
+            width: 500px;
+            height: 60px;
+            margin: auto;
+            margin-bottom: 50px;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 40px;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        h2 {
+            font-weight: bolder;
+            text-align: center;
+            background-color: #e6aa1f;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .search-bar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            width: 50%;
+            position: relative;
+        }
+
+            .search-bar input {
+                width: 100%;
+                padding: 10px 20px;
+                border-radius: 50px;
+                border: 1px solid #ddd;
+                font-size: 16px;
+            }
+
+            .search-bar img {
+                position: absolute;
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+
+        .container {
+            box-shadow: 0px 5px 10px #e6aa1f;
+            padding: 20px;
+            background-color: #e6aa1f;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .col-md-4 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+            .col-md-4 img {
+                border-radius: 10px;
+                box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+                height: 300px;
+                width: 300px;
+                object-fit: cover;
+            }
+
+                .col-md-4 img:hover {
+                    width: 350px;
+                    height: 350px;
+                }
+
+        h2 {
+            margin-top: 15px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .btn-warning {
+            border: none;
+            font-size: 20px;
+            height: 50px;
+            width: 200px;
+            font-family: Arial, sans-serif;
+            background-color: #f5b905;
+            color: #0a0000;
+            cursor: pointer;
+            border-radius: 40px;
+        }
+
+            .btn-warning:hover {
+                background-color: #269610c5;
+                color: #0a0000;
+            }
+
+        .container {
+            background-color: #f8f9fa;
+        }
+
+            .container .row {
+                margin: 0;
+            }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        /* Bill receipt styles */
+        .receipt-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .receipt-header, .receipt-footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .receipt-footer {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .receipt-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+            .receipt-table th, .receipt-table td {
+                text-align: left;
+                padding: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .receipt-table th {
+                background-color: #f8f9fa;
+            }
+
+        .receipt-total {
+            text-align: right;
+            font-weight: bold;
+        }
+
+            .receipt-total span {
+                margin-left: 10px;
+            }
+    </style>
+
+
+</head>
+<body>
+    <div class="logo">
+        <img src="mlogo_processed.jpg" alt="logo" width="160px" height="160px">
+    </div>
+
+    <div class="search-bar-container">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for burgers, fries, meals..."><img src="search-icon-png-9969.png" alt="search" width="50px" height="50px">
+
+        </div>
+    </div>
+    <h1 class="veg">Veggis Burger</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="double cheese burger - Copy.jpg" alt="Double Cheese burger">
+                <h2><b>Double Cheese Burger</b></h2>
+                <p>A Double Cheeseburger topped with tangy pickles, chopped onions, ketchup, mustard, and two melty American cheese slices.</p>
+                <p class="price">₹150</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="veg mushroom.jpeg" m alt="Veg Maharaja Burger">
+                <h2><b>Veg Maharaja Burger</b></h2>
+                <p>A Veg Maharaja Burger topped with two spiced vegetable patties, lettuce, tomatoes, creamy mayo, and melty cheese.</p>
+                <p class="price">₹120</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="aloo tikki burger.jpg" />.jpg" alt="Aloo Tikki Burger">
+                <h2><b>Aloo Tikki Burger</b></h2>
+                <p>Aloo Tikki Burger topped with potato, peas, onions, tomatoes, and sweet tomato mayo sauce.</p>
+                <p class="price">₹80</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="burger1.jpeg" alt="Veg Spicy Burger">
+                <h2><b>Veg Spicy Burger</b></h2>
+                <p>Veg Spicy Burger topped with a bold spiced vegetable patty, pickles, onions, lettuce, and chipotle mayo.</p>
+                <p class="price">₹100</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="cheeseburger.jpg" alt="Cheese burger">
+                <h2><b>Cheese Burger</b></h2>
+                <p>Cheeseburger topped with Cheesy veg patty, chipotle sauce, jalapenos, lettuce on Italian herb buns.</p>
+
+                <p class="price">₹90</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="deluxepannerburger.jpg" alt="Deluxe Panner Burger">
+                <h2><b>Deluxe Paneer Burger</b></h2>
+                <p>Deluxe Paneer Burger topped with a spiced paneer patty, pickles, onions, lettuce, and creamy mayo.</p>
+                <p class="price">₹130</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="burger3.jpeg" alt="Falafel Burger">
+                <h2><b>Falafel Burger</b></h2>
+                <p>Falafel Burger topped with a spiced falafel patty, pickles, onions, lettuce, and creamy tahini sauce.</p>
+                <p class="price">₹110</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="spicypannerburger.jpg" alt="Hamburger">
+                <h2><b>Spicy Paneer Burger</b></h2>
+                <p>Spicy Paneer Burger topped with paneer patty, lettuce, jalapenos, cheese slice, and spicy sauces.</p>
+                <p class="price">₹70</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="veg mushroom.jpeg" alt="Mushroom Burger">
+                <h2><b>Mushroom Burger</b></h2>
+                <p>Mushroom Burger with a patty, sautéed mushrooms, lettuce, tomatoes, and creamy mayo in a sesame bun.</p>
+                <p class="price">₹140</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <h1>Chicken Burgers</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="burger6.jpeg" alt="Chicken Burger">
+                <h2><b>Chicken Burger</b></h2>
+                <p>Chicken Burger topped with a crispy chicken patty, lettuce, and tangy mayonnaise sauce.</p>
+                <p class="price">₹120</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="Chickencheeseburger.jpg" alt="Chicken Cheese Burger">
+                <h2><b>Chicken Cheese Burger</b></h2>
+                <p>Chicken Cheese Burger topped with a crispy chicken patty, lettuce, and cheese sauce.</p>
+                <p class="price">₹140</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="burger7.jpg" alt="Spicy Chicken Cheese burger">
+                <h2><b>Spicy Chicken Cheese burger</b></h2>
+                <p>Spicy Chicken Cheese Burger topped with spicy chicken patty, lettuce, and cheese sauce.</p>
+                <p class="price">₹150</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="img2.jpg" alt="Chicken Maharaja Mac">
+                <h2><b>Chicken Maharaja Mac</b></h2>
+                <p>Chicken Maharaja Mac topped with two crispy chicken patties, lettuce, cheese, and special sauce.</p>
+                <p class="price">₹160</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="chickenkebab.jpg" alt="Chicken Kebab Burger">
+                <h2><b>Chicken Kebab Burger</b></h2>
+                <p>Chicken Kebab Burger topped with spiced chicken patty, lettuce, onions, and creamy mayo.</p>
+                <p class="price">₹130</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="Grilledchickenburger.jpg" alt="Grilled Chicken Burger">
+                <h2><b>Grilled Chicken Burger</b></h2>
+                <p>Grilled Chicken & Cheese Burger topped with grilled chicken, melted cheese, lettuce, onions, and creamy mayo.</p>
+                <p class="price">₹150</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="img3.jpg" alt="Cheese Bacon Chicken Burger">
+                <h2><b>Cheese Bacon Chicken Burger</b></h2>
+                <p>Cheese Bacon Crispy Chicken Burger topped with crispy chicken, melted cheese, bacon, lettuce, and creamy mayo.</p>
+                <p class="price">₹170</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="BBQCrispyChicken.jpg" alt="BBQ Crispy Chicken">
+                <h2><b>BBQ Crispy Chicken</b></h2>
+                <p>BBQ Crispy Chicken Burger topped with crispy chicken, BBQ sauce, lettuce, and creamy mayo.</p>
+                <p class="price">₹140</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="img1.jpg" alt="Mozzarella Chicken Burger">
+                <h2><b>Mozzarella Chicken Burger</b></h2>
+                <p>Mozzarella Chicken Burger topped with crispy chicken, melted mozzarella, lettuce, and creamy mayo.</p>
+                <p class="price">₹150</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+
+    <h1>Burger's and Meals</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="Doublepattycombo.png" alt="Mexican McAloo Tikki Double Patty Burger Combo">
+                <h2><b>Mexican McAloo Tikki Double Patty Burger Combo</b></h2>
+                <p>Enjoy the Mexican McAloo Tikki burger with double patty + Fries (M) + Coke (M)</p>
+                <p class="price">₹243</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="Veggiedoublepatty.png" alt="Veggie Double Patty Burger Combo">
+                <h2><b>Veggie Double Patty Burger Combo</b></h2>
+                <p>Enjoy a combo of McVeggie double patty burer + Fries (M) + Drink of your Choice in a new, delivery friendly, resuable bottle.</p>
+                <p class="price">₹319</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="spicypaneerburgercombo.png" alt="Spicy Panner combo">
+                <h2><b>Spicy Paneer Burger Combo</b></h2>
+                <p>Enjoy your favourite McSpicy Paneer Burger + Fries (M) + Drink of your Choice.</p>
+                <p class="price">₹342</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="spicydeluxecombo.png" alt="Aloo Tikki Burger">
+                <h2><b>Spicy Deluxe Chicken Double Patty Burger Combo</b></h2>
+                <p>McSpicy Deluxe Chicken double patty Burger + Fries (M) + Drink of your choice.</p>
+                <p class="price">₹428</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="chheseburgercombo.png" alt="chheseburgercombo">
+                <h2><b>Cheese Burger Veg Combo</b></h2>
+                <p>Enjoy a deliciously filling meal of McCheese Veg Burger + Fries (M) + Beverage of your Choice.</p>
+                <p class="price">₹385</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+            <div class="col-md-4">
+                <img src="chickenmaharajacombo.png" alt="Chicken Maharaja Combo">
+                <h2><b>Chicken Maharaja Burger Combo</b></h2>
+                <p>Enjoy a double decker Chicken Maharaja Mac + Fries (M) + Drink of your Choice .</p>
+                <p class="price">₹390</p>
+                <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+            </div>
+
+            <h1>French Fries</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="fries.jpg" alt="Regular Fries">
+                        <h2><b>Regular Fries</b></h2>
+                        <p>World Famous Fries, crispy, golden, lightly salted and fried to perfection! Also known as happiness.</p>
+                        <p class="price">₹78</p>
+                        <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="salsafries.png" alt="Salsa Cheese Fries">
+                        <h2><b>Salsa Cheese Fries</b></h2>
+                        <p>The world famous, crispy, golden Fries, served with rich cheese sauce and a tangy twist of salsa</p>
+                        <p class="price">₹135</p>
+                        <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="classicfries.png" alt="Classic Cheese Fries">
+                        <h2><b>Classic Cheese Fries</b></h2>
+                        <p>The world famous, crispy golden Fries, served with delicious cheese sauce with a hint of spice. Contains cheese & mayonnaise</p>
+                        <p class="price">₹155</p>
+                        <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="piripiri.png" alt="Piri Piri Spice Mix">
+                        <h2><b>Piri Piri Spice Mix</b></h2>
+                        <p>The perfect, taste bud tingling partner for our World Famous Fries. Shake Shake, and dive in!</p>
+                        <p class="price">₹24</p>
+                        <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="mustardsauce.png" alt="Mustard Sauce">
+                        <h2><b>Mustard Sauce</b></h2>
+                        <p>Looking for a sauce to complement your meal? Look no further.</p>
+                        <p class="price">₹19</p>
+                        <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="nuggets.png" alt="9 Pc Chicken Nuggets">
+                        <h2><b>9 Pc Chicken Nuggets</b></h2>
+                        <p>9 pieces of our iconic crispy, golden fried Chicken McNuggets!</p>
+                        <p class="price">₹213</p>
+                        <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <h1>Coffee & Bervages(hot and cold)</h1>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="cappuccino.png" alt="Cappuccino Coffee (S)">
+                            <h2><b>Cappuccino Coffee (S)</b></h2>
+                            <p>A refreshing espresso shot of 100% Arabica beans, topped with steamed milk froth. 236ml</p>
+                            <p class="price">₹165</p>
+                            <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="hot.png" alt="Hot Chocolate (R)">
+                            <h2><b>Hot Chocolate (R)</b></h2>
+                            <p>Sinfully creamy chocolate whisked with silky streamed milk</p>
+                            <p class="price">₹216</p>
+                            <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="mocha.png" alt="Mocha Coffee (R)">
+                            <h2><b>Mocha Coffee (R)</b></h2>
+                            <p>A delight of ground Arabica espresso, chocolate syrup and steamed milk</p>
+                            <p class="price">₹236</p>
+                            <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="americano.png" alt="Americano Coffee (R)">
+                            <h2><b>Americano Coffee (R)                </b></h2>
+                            <p>Refreshing cup of bold and robust espresso made with our signature 100% Arabica beans, combined with hot water</p>
+                            <p class="price">₹190</p>
+                            <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="coke.png" alt="Coke zero can">
+                            <h2><b>Coke zero can</b></h2>
+                            <p>The perfect diet companion to your burger, fries and everything nice. Regular serving size, 300 Ml</p>
+                            <p class="price">₹70</p>
+                            <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="mixedfruit.png" alt="Mixed Fruit Beverage">
+                            <h2><b>Mixed Fruit Beverage</b></h2>
+                            <p>Made with puree, pulp & juice from 6 delicious fruits</p>
+                            <p class="price">₹85 </p>
+                            <button type="button" class="btn btn-warning btn-lg add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <script src="cart.js"></script>
+                <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='bill.html'">Checkout</button>
+</body>
+</html>

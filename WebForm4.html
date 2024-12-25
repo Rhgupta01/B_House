@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="time"],
+        .form-group input[type="date"],
+        .form-group input[type="tel"],
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .form-group button {
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 1em;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Table Booking</h1>
+        <form id="bookingForm" method="POST" action="submit_booking.php">
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                <span class="error-message">Name is required.</span>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                <span class="error-message">Email is required.</span>
+            </div>
+
+            <!-- Number of People -->
+            <div class="form-group">
+                <label for="people">Number of People:</label>
+                <input type="number" id="people" name="people" placeholder="Enter number of people" min="1" required>
+                <span class="error-message">Number of people is required.</span>
+            </div>
+
+            <!-- Booking Time -->
+            <div class="form-group">
+                <label for="time">Booking Time:</label>
+                <input type="time" id="time" name="time" required>
+                <span class="error-message">Booking time is required.</span>
+            </div>
+
+            <!-- Booking Date -->
+            <div class="form-group">
+                <label for="date">Booking Date:</label>
+                <input type="date" id="date" name="date" required>
+                <span class="error-message">Booking date is required.</span>
+            </div>
+
+            <!-- Phone Field -->
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}"
+                    required>
+                <span class="error-message">Phone is required (10 digits).</span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Optional JavaScript for client-side error handling
+        const form = document.getElementById('bookingForm');
+        const inputs = form.querySelectorAll('input');
+
+        form.addEventListener('submit', (e) => {
+            let valid = true;
+
+            inputs.forEach((input) => {
+                const errorSpan = input.nextElementSibling;
+                if (!input.checkValidity()) {
+                    errorSpan.style.display = 'block';
+                    valid = false;
+                } else {
+                    errorSpan.style.display = 'none';
+                }
+            });
+
+            if (!valid) {
+                e.preventDefault(); // Prevent form submission if invalid
+            }
+        });
+    </script>
+</body>
+
+</html>

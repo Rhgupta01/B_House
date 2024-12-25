@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Registration Form</title>
+    <style>
+        .error { color: red; font-size: small; }
+    </style>
+</head>
+<body>
+    <h1>Restaurant Registration Form</h1>
+    <form action="your_backend_script_url" method="post">
+        <!-- First Name -->
+        <label for="first">First Name:</label><br>
+        <input type="text" id="first" name="first" required>
+        <span class="error">* Required</span><br><br>
+
+        <!-- Last Name -->
+        <label for="last">Last Name:</label><br>
+        <input type="text" id="last" name="last" required>
+        <span class="error">* Required</span><br><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required>
+        <span class="error">* Enter a valid email</span><br><br>
+
+        <!-- Mobile -->
+        <label for="mobile">Mobile:</label><br>
+        <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+        <span class="error">* Must be a 10-digit number</span><br><br>
+
+        <!-- Age -->
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" min="1" required>
+        <span class="error">* Required</span><br><br>
+
+        <!-- Password -->
+        <label for="pass">Password:</label><br>
+        <input type="password" id="pass" name="pass" required>
+        <span class="error">* Required</span><br><br>
+
+        <!-- Confirm Password -->
+        <label for="cpass">Confirm Password:</label><br>
+        <input type="password" id="cpass" name="cpass" required>
+        <span class="error">* Must match the password</span><br><br>
+
+        <!-- Address -->
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+        <span class="error">* Required</span><br><br>
+
+        <!-- Agree to Terms -->
+        <input type="checkbox" id="agree" name="agree" required>
+        <label for="agree">I agree to the terms and conditions</label><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Optional: Add client-side password matching validation
+        const form = document.querySelector('form');
+        const pass = document.getElementById('pass');
+        const cpass = document.getElementById('cpass');
+
+        form.addEventListener('submit', function (e) {
+            if (pass.value !== cpass.value) {
+                e.preventDefault();
+                alert("Passwords do not match!");
+            }
+        });
+    </script>
+</body>
+</html>

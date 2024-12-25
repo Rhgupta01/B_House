@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <style>
+        body {
+            background-image: url('exploding-burger-with-vegetables-melted-cheese-black-background-generative-ai.jpg');
+            background-size: cover;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .Register {
+            position: absolute;
+            top: 7%;
+            left: 20%;
+            background: transparent;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgb(255, 255, 255);
+            height: auto;
+            width: 60%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        label {
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="password"],
+        textarea {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            background: transparent;
+            color: white;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input[type="checkbox"] {
+            margin: 10px 5px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            background-color: #ffffffc5;
+            color: #000000;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #000000c5;
+            color: #ffffff;
+        }
+
+        nav a {
+            display: block;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 16px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        nav a:hover {
+            color: #0f02c7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Register">
+        <form id="signupForm" action="submit_signup.php" method="POST" onsubmit="return validatePasswords();">
+            <h1>Signup</h1>
+            <table>
+                <tr>
+                    <td><label for="firstName">First Name:</label></td>
+                    <td><input type="text" id="firstName" name="firstName" placeholder="First Name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="lastName">Last Name:</label></td>
+                    <td><input type="text" id="lastName" name="lastName" placeholder="Last Name" required></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email-Id:</label></td>
+                    <td><input type="email" id="email" name="email" placeholder="Email-Id" required></td>
+                </tr>
+                <tr>
+                    <td><label for="mobile">Mobile No.:</label></td>
+                    <td><input type="text" id="mobile" name="mobile" placeholder="Mobile No." pattern="[0-9]{10}"
+                            required></td>
+                </tr>
+                <tr>
+                    <td><label for="age">Age:</label></td>
+                    <td><input type="number" id="age" name="age" placeholder="Age" min="10" max="100" required></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="password" id="password" name="password" placeholder="Password" required></td>
+                </tr>
+                <tr>
+                    <td><label for="confirmPassword">Confirm Password:</label></td>
+                    <td><input type="password" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm Password" required></td>
+                </tr>
+                <tr>
+                    <td><label for="address">Address:</label></td>
+                    <td><textarea id="address" name="address" rows="4" placeholder="Address" required></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" id="agree" name="agree" required>
+                        <label for="agree" style="color: #fff;">I agree to all conditions</label>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit">Submit</button>
+            <nav>
+                <a href="WebForm2.html">Already have an account? Login</a>
+            </nav>
+        </form>
+    </div>
+    <script>
+        function validatePasswords() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please try again.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
